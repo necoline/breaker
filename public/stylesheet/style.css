@@ -1,0 +1,108 @@
+body {
+  margin: 0;
+}
+
+.container {
+  display: grid;
+}
+
+.content {
+  background-color: #f5f5f5;
+  color: black;
+  width: 100vw;
+  height: 90vh;
+}
+
+.bottom-nav {
+  width: 100vw;
+  height: 10vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.episode-content {
+  border: 5px solid #fee7d5;
+  margin: auto;
+}
+
+.edit {
+  height: 5vh;
+  width: auto;
+  margin: 1% 35vw;
+  position: absolute;
+}
+
+.more {
+  height: 5vh;
+  width: auto;
+  margin: 5% 35vw;
+  position: absolute;
+}
+
+.episode-data {
+  background-color: #fee7d5;
+  font-size: large;
+}
+
+.audio-menu {
+  margin: 2.5vh 0;
+}
+
+.audio-btn {
+  margin: 0 3%;
+}
+
+@media only screen and (min-width: 600px) {
+  .icon {
+    height: 80px;
+  }
+  .audio-btn {
+    margin: 0 5%;
+  }
+  .episode-content {
+    width: 90vw;
+  }
+  .img {
+    width: 90vw;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .icon {
+    height: 30px;
+  }
+  .episode-content {
+    width: 40vw;
+  }
+  .img {
+    width: 40vw;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .icon {
+    height: 50px;
+  }
+  .audio-menu {
+    margin: 3vh 0;
+  }
+  .episode-content {
+    width: 40vw;
+  }
+  .img {
+    width: 30vw;
+    height: auto;
+  }
+}
+
+@media only screen and (min-width: 3000px) {
+  .icon {
+    height: 70px;
+  }
+  .episode-content {
+    width: 30vw;
+  }
+}

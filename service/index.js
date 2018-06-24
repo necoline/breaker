@@ -24,7 +24,7 @@ startServer();
 
 server.route({
   method: 'GET',
-  path: '/stuff',
+  path: '/',
   handler: {
     proxy: {
       mapUri: req => {

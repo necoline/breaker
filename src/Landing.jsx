@@ -1,5 +1,7 @@
 import React from 'react';
 import podcasts from './api/podcasts.js';
+import AudioBar from './components/AudioBar.jsx';
+import Display from './components/Display.jsx';
 
 class Landing extends React.Component {
   componentDidMount() {
@@ -10,9 +12,13 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <div className="landing">
-        <div>this works</div>
-        <div>this works</div>
+      <div className="container">
+        <div className="content">
+          <Display />
+        </div>
+        <nav className="bottom-nav">
+          <AudioBar />
+        </nav>
       </div>
     );
   }

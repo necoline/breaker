@@ -86,6 +86,17 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./data.json":
+/*!*******************!*\
+  !*** ./data.json ***!
+  \*******************/
+/*! exports provided: episode, default */
+/***/ (function(module) {
+
+module.exports = {"episode":{"id":"29314799","created_at":"2017-12-11T20:25:44.819Z","published_at":"2017-12-11T20:03:15.000Z","image_url":"https://api.breaker.audio/shows/185226/episodes/29314799/image?v=1735a17353ecc0da520ed55ac418762c","primary_color":"9e1a65","secondary_color":"f593b9","enclosure_url":"http://feeds.soundcloud.com/stream/368129684-shouldwe-no-41-change-everything.mp3","enclosure_type":"audio/mpeg","duration":3195,"size":51123930,"title":"No. 41 Change Everything?","stripped_description":"In the season finale, we dig into the tension between ritual and change. We share how much has changed for each of us even since the last episode and how our habits evolve.","explicit":false,"liked":null,"listened":null,"playlist":null,"playlisted":null,"episode_comments_count":0,"dislikes_count":0,"likes_count":1,"listens_count":9,"playlists_count":102,"popularity":28,"language":"en","description":"In the season finale, we dig into the tension between ritual and change. We share how much has changed for each of us even since the last episode and how our habits evolve.","followee_likers":null,"followee_listeners":null,"followee_episode_commenters":null,"show":{"id":"185226","created_at":"2016-05-10T03:00:34.834Z","name":"Should We","slug":"should-we","artist_id":null,"artist_name":"Diana Kimball & Lisa Sanchez","feed_url":"http://feeds.soundcloud.com/users/soundcloud:users:181343349/sounds.rss","image_url":"https://api.breaker.audio/shows/185226/image?v=8572f6185658e2e7ff77a46fb3ae41aa","primary_color":"fee7d5","secondary_color":"9d4d6a","subtitle":"Creative conversations about the everyday choices","stripped_description":"Creative conversations about the everyday choices that make us, hosted by Lisa Sanchez and Diana Kimball Berlin.","keywords":null,"frequency":"Twice a month","explicit":false,"video":false,"subscribed":false,"subscription":null,"median_duration":2051,"subscriptions_count":110,"episodes_count":42,"episode_comments_count":0,"listened_episodes_count":0,"language":"en","description":"Creative conversations about the everyday choices that make us, hosted by Lisa Sanchez and Diana Kimball Berlin."}}};
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -12083,11 +12094,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _api_podcasts_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api/podcasts.js */ "./src/api/podcasts.js");
+/* harmony import */ var _components_AudioBar_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AudioBar.jsx */ "./src/components/AudioBar.jsx");
+/* harmony import */ var _components_Display_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Display.jsx */ "./src/components/Display.jsx");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
 
 
 
@@ -12110,16 +12125,16 @@ var Landing = function (_React$Component) {
   Landing.prototype.render = function render() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
       'div',
-      { className: 'landing' },
+      { className: 'container' },
       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
         'div',
-        null,
-        'this works'
+        { className: 'content' },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Display_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)
       ),
       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-        'div',
-        null,
-        'this works'
+        'nav',
+        { className: 'bottom-nav' },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AudioBar_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], null)
       )
     );
   };
@@ -12172,6 +12187,299 @@ __webpack_require__.r(__webpack_exports__);
     return _agent__WEBPACK_IMPORTED_MODULE_0__["default"].get("/stuff");
   }
 });
+
+/***/ }),
+
+/***/ "./src/components/AudioBar.jsx":
+/*!*************************************!*\
+  !*** ./src/components/AudioBar.jsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var AuidoBar = function (_React$Component) {
+  _inherits(AuidoBar, _React$Component);
+
+  function AuidoBar() {
+    _classCallCheck(this, AuidoBar);
+
+    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+  }
+
+  AuidoBar.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      "div",
+      { className: "audio-menu" },
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", { src: "../public/stylesheet/back.svg", alt: "play", className: "icon audio-btn" }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", { src: "../public/stylesheet/play.svg", alt: "play", className: "icon audio-btn" }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", { src: "../public/stylesheet/forward.svg", alt: "play", className: "icon audio-btn" })
+    );
+  };
+
+  return AuidoBar;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AuidoBar);
+
+/***/ }),
+
+/***/ "./src/components/Display.jsx":
+/*!************************************!*\
+  !*** ./src/components/Display.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data.json */ "./data.json");
+var _data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data.json */ "./data.json", 1);
+/* harmony import */ var _ShowDisplay__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ShowDisplay */ "./src/components/ShowDisplay.jsx");
+/* harmony import */ var _EditDisplay__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./EditDisplay */ "./src/components/EditDisplay.jsx");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+
+var Display = function (_React$Component) {
+  _inherits(Display, _React$Component);
+
+  function Display(props) {
+    _classCallCheck(this, Display);
+
+    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.toggleEdit = function (e) {
+      console.log('togggggggle', _this.state.isEditing);
+      e.preventDefault();
+      _this.setState({ isEditing: !_this.state.isEditing });
+    };
+
+    _this.state = {
+      isEditing: false
+    };
+    return _this;
+  }
+
+  Display.prototype.formatDate = function formatDate() {
+    var date = new Date(_data_json__WEBPACK_IMPORTED_MODULE_1__.episode.published_at);
+    var locale = 'en-us';
+    var month = date.toLocaleString(locale, { month: 'long' });
+    return month + ' ' + date.getDate() + ', ' + date.getFullYear();
+  };
+
+  Display.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      'div',
+      { className: 'episode-content' },
+      this.state.isEditing ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditDisplay__WEBPACK_IMPORTED_MODULE_3__["default"], { formatDate: this.formatDate, toggleEdit: this.toggleEdit }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowDisplay__WEBPACK_IMPORTED_MODULE_2__["default"], { formatDate: this.formatDate, toggleEdit: this.toggleEdit })
+    );
+  };
+
+  return Display;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Display);
+
+/***/ }),
+
+/***/ "./src/components/EditDisplay.jsx":
+/*!****************************************!*\
+  !*** ./src/components/EditDisplay.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data.json */ "./data.json");
+var _data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data.json */ "./data.json", 1);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+var EditDisplay = function (_React$Component) {
+  _inherits(EditDisplay, _React$Component);
+
+  function EditDisplay(props) {
+    _classCallCheck(this, EditDisplay);
+
+    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.handleTitleChange = function (event) {
+      _this.setState({ title: event.target.value });
+    };
+
+    _this.handleDescriptionChange = function (event) {
+      _this.setState({ description: event.target.value });
+    };
+
+    _this.state = {
+      title: '',
+      description: ''
+    };
+    return _this;
+  }
+
+  EditDisplay.prototype.render = function render() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      'div',
+      null,
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'div',
+        { className: 'episode-data' },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          this.props.formatDate()
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          'Title:'
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('input', {
+          onChange: this.handleTitleChange,
+          type: 'text',
+          className: 'input',
+          value: this.state.title,
+          placeholder: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.title
+        }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          'Description:'
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('input', {
+          onChange: this.handleDescriptionChange,
+          type: 'text',
+          className: 'input',
+          value: this.state.title,
+          placeholder: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.description
+        }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'button',
+          { className: 'btn', onClick: this.props.toggleEdit },
+          'Save'
+        )
+      )
+    );
+  };
+
+  return EditDisplay;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (EditDisplay);
+
+/***/ }),
+
+/***/ "./src/components/ShowDisplay.jsx":
+/*!****************************************!*\
+  !*** ./src/components/ShowDisplay.jsx ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../data.json */ "./data.json");
+var _data_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data.json */ "./data.json", 1);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+
+
+var ShowDisplay = function (_React$Component) {
+  _inherits(ShowDisplay, _React$Component);
+
+  function ShowDisplay() {
+    _classCallCheck(this, ShowDisplay);
+
+    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+  }
+
+  ShowDisplay.prototype.render = function render() {
+    var _this2 = this;
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+      'div',
+      null,
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/edit.svg', alt: 'edit', className: 'edit', onClick: function onClick(e) {
+          return _this2.props.toggleEdit(e);
+        } }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/more.svg', alt: 'more', className: 'more' }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.image_url, className: 'img', alt: _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.title }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'div',
+        { className: 'episode-data' },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          this.props.formatDate()
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.title
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.description
+        )
+      )
+    );
+  };
+
+  return ShowDisplay;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+ShowDisplay.propTypes = {
+  toggleEdit: prop_types__WEBPACK_IMPORTED_MODULE_1__["func"].isRequired
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ShowDisplay);
 
 /***/ })
 
