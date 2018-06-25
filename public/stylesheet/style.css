@@ -15,21 +15,32 @@ body {
 
 .bottom-nav {
   width: 100vw;
-  height: 10vh;
+  height: 15vh;
   background-color: black;
   color: white;
   text-align: center;
 }
 
+.line-item {
+  display: block;
+  margin: 2% 0;
+}
+
+.title-font {
+  font-size: large;
+  color: #4a148c;
+  text-align: center;
+}
+
 .episode-content {
-  border: 5px solid #4a148c;
   margin: auto;
+  font-family: 'Verdana', 'Geneva', sans-serif;
 }
 
 .edit {
   height: 5vh;
   width: auto;
-  margin: 1% 35vw;
+  margin: 1% 36vw;
   position: absolute;
 }
 
@@ -42,6 +53,12 @@ body {
 
 .episode-data {
   font-size: large;
+  border: 3px solid #4a148c;
+  border-radius: 10px;
+  color: #4a148c;
+  font-size: small;
+  line-height: normal;
+  padding: 0.05% 2%;
 }
 
 /*  AUDIO NAV */
@@ -49,38 +66,43 @@ body {
   margin: 2.5vh 0;
 }
 
-.audio-btn {
-  margin: 0 3%;
+.progress {
+  z-index: 2;
+  padding: 0 15px;
 }
 
-.progress-bar {
-  height: 4vh;
-  width: 1%;
-  background-color: #e040fb;
-  transition: width 0.1s linear;
+.duration-display {
+  color: white;
+  padding: 15px;
+  z-index: 4;
+}
+
+.audio-btn {
+  margin: 0 3%;
 }
 
 /*  EDIT VIEW */
 .input {
   background: none;
   border-style: none;
-  border-bottom: 1px solid #ea80fc;
+  border-bottom: 1px solid #4a148c;
   width: 75%;
-  font-family: 'Verdana', 'Geneva', sans-serif;
   font-size: small;
-  color: white;
+  margin-left: 2%;
 }
 
 ::placeholder {
-  color: white;
+  color: black;
 }
 
 .edit-box {
-  background-color: #4a148c;
-  color: white;
-  font-family: 'Verdana', 'Geneva', sans-serif;
+  border: 3px solid #4a148c;
+  border-radius: 10px;
+  color: #4a148c;
   font-size: small;
   line-height: normal;
+  margin: 35% 0;
+  padding: 2%;
 }
 
 .btn {
@@ -89,6 +111,7 @@ body {
   border-color: none;
   margin: 1% 45%;
 }
+
 /*  MEDIA QUERIES */
 @media only screen and (min-width: 600px) {
   .icon {

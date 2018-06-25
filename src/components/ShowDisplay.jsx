@@ -8,14 +8,11 @@ class ShowDisplay extends React.Component {
         <a onClick={e => this.props.toggleEdit(e)}>
           <img src="../public/stylesheet/edit.svg" alt="edit" className="edit" />
         </a>
-        <img src="../public/stylesheet/more.svg" alt="more" className="more" />
         <img src={this.props.imgUrl} className="img" alt={data.episode.title} />
         <div className="episode-data">
-          <span>{this.props.formatDate()}</span>
-          <br />
-          <span>{this.props.title}</span>
-          <br />
-          <span>{this.props.description}</span>
+          <span className="line-item">{this.props.formatDate()}</span>
+          <span className="line-item">{this.props.title}</span>
+          <span className="line-item">{this.props.description}</span>
         </div>
       </div>
     );
