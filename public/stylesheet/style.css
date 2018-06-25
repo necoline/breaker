@@ -22,7 +22,7 @@ body {
 }
 
 .episode-content {
-  border: 5px solid #fee7d5;
+  border: 5px solid #4a148c;
   margin: auto;
 }
 
@@ -41,10 +41,10 @@ body {
 }
 
 .episode-data {
-  background-color: #fee7d5;
   font-size: large;
 }
 
+/*  AUDIO NAV */
 .audio-menu {
   margin: 2.5vh 0;
 }
@@ -53,6 +53,43 @@ body {
   margin: 0 3%;
 }
 
+.progress-bar {
+  height: 4vh;
+  width: 1%;
+  background-color: #e040fb;
+  transition: width 0.1s linear;
+}
+
+/*  EDIT VIEW */
+.input {
+  background: none;
+  border-style: none;
+  border-bottom: 1px solid #ea80fc;
+  width: 75%;
+  font-family: 'Verdana', 'Geneva', sans-serif;
+  font-size: small;
+  color: white;
+}
+
+::placeholder {
+  color: white;
+}
+
+.edit-box {
+  background-color: #4a148c;
+  color: white;
+  font-family: 'Verdana', 'Geneva', sans-serif;
+  font-size: small;
+  line-height: normal;
+}
+
+.btn {
+  background-color: #ea80fc;
+  border-style: none;
+  border-color: none;
+  margin: 1% 45%;
+}
+/*  MEDIA QUERIES */
 @media only screen and (min-width: 600px) {
   .icon {
     height: 80px;

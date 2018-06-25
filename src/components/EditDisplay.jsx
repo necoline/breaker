@@ -1,35 +1,31 @@
 import React from 'react';
 import data from '../../data.json';
-
 class EditDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      description: '',
-    };
-  }
-
+  // Sends updated title to parent.
   handleTitleChange = event => {
-    this.setState({ title: event.target.value });
+    this.props.setTitle(event.target.value);
   };
 
+  // Sends updated description to parent.
   handleDescriptionChange = event => {
-    this.setState({ description: event.target.value });
+    this.props.setDescription(event.target.value);
+  };
+
+  // Sends updated image url to parent.
+  handleImgChange = event => {
+    this.props.setImgUrl(event.target.value);
   };
 
   render() {
     return (
       <div>
-        <div className="episode-data">
-          <span>{this.props.formatDate()}</span>
-          <br />
+        <div className="edit-box">
           <span>Title:</span>
           <input
             onChange={this.handleTitleChange}
             type="text"
             className="input"
-            value={this.state.title}
+            value={this.props.title}
             placeholder={data.episode.title}
           />
           <br />
@@ -38,11 +34,20 @@ class EditDisplay extends React.Component {
             onChange={this.handleDescriptionChange}
             type="text"
             className="input"
-            value={this.state.title}
+            value={this.props.description}
             placeholder={data.episode.description}
           />
           <br />
-          <button className="btn" onClick={this.props.toggleEdit}>
+          <span>Image URL:</span>
+          <input
+            onChange={this.handleImgChange}
+            type="text"
+            className="input"
+            value={this.props.imgUrl}
+            placeholder={data.episode.image_url}
+          />
+          <br />
+          <button className="btn" onClick={e => this.props.setEdits(e)}>
             Save
           </button>
         </div>

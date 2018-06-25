@@ -12201,6 +12201,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data.json */ "./data.json");
+var _data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data.json */ "./data.json", 1);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -12209,22 +12211,84 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
 var AuidoBar = function (_React$Component) {
   _inherits(AuidoBar, _React$Component);
 
-  function AuidoBar() {
+  function AuidoBar(props) {
     _classCallCheck(this, AuidoBar);
 
-    return _possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+
+    _this.togglePlay = function () {
+      _this.setState({ isPlaying: !_this.state.isPlaying });
+    };
+
+    _this.onPlay = function () {
+      _this.togglePlay();
+      return _this.state.audioFile.play();
+    };
+
+    _this.onPause = function () {
+      _this.togglePlay();
+      return _this.state.audioFile.pause();
+    };
+
+    _this.onSkipAhead = function () {
+      console.log('skipping');
+      return _this.state.audioFile.currentTime += 30.0;
+    };
+
+    _this.onSkipBack = function () {
+      console.log('skipping');
+      return _this.state.audioFile.currentTime -= 30.0;
+    };
+
+    _this.showProgress = function () {
+      var elem = document.getElementById('myBar');
+      var width = 1;
+      var id = setInterval(frame, 10);
+      function frame() {
+        if (width >= 100) {
+          clearInterval(id);
+        } else {
+          width++;
+          elem.style.width = width + '%';
+        }
+      }
+    };
+
+    _this.state = {
+      isPlaying: false,
+      audioFile: new Audio(_data_json__WEBPACK_IMPORTED_MODULE_1__.episode.enclosure_url)
+    };
+    return _this;
   }
 
   AuidoBar.prototype.render = function render() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-      "div",
-      { className: "audio-menu" },
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", { src: "../public/stylesheet/back.svg", alt: "play", className: "icon audio-btn" }),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", { src: "../public/stylesheet/play.svg", alt: "play", className: "icon audio-btn" }),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", { src: "../public/stylesheet/forward.svg", alt: "play", className: "icon audio-btn" })
+      'div',
+      { className: 'audio-menu' },
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('div', { className: 'progress-bar' }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'a',
+        { onClick: this.onSkipBack },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/back.svg', alt: 'back', className: 'icon audio-btn' })
+      ),
+      !this.state.isPlaying ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'a',
+        { onClick: this.onPlay },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/play.svg', alt: 'play', className: 'icon audio-btn' })
+      ) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'a',
+        { onClick: this.onPause },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/pause.svg', alt: 'pause', className: 'icon audio-btn' })
+      ),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'a',
+        { onClick: this.onSkipAhead },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/forward.svg', alt: 'forward', className: 'icon audio-btn' })
+      )
     );
   };
 
@@ -12269,17 +12333,56 @@ var Display = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
 
+    _this.setTitle = function (title) {
+      _this.setState({ title: title });
+    };
+
+    _this.setDescription = function (description) {
+      _this.setState({ description: description });
+    };
+
+    _this.setImgUrl = function (imgUrl) {
+      _this.setState({ imgUrl: imgUrl });
+    };
+
     _this.toggleEdit = function (e) {
-      console.log('togggggggle', _this.state.isEditing);
       e.preventDefault();
       _this.setState({ isEditing: !_this.state.isEditing });
     };
 
     _this.state = {
-      isEditing: false
+      isEditing: false,
+      title: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.title,
+      description: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.description,
+      imgUrl: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.image_url
     };
     return _this;
   }
+
+  // Sets edited title.
+
+
+  // Sets edited description.
+
+
+  // Sets edited image url.
+
+
+  // Sets edited description and toggles the view.
+  Display.prototype.setEdits = function setEdits(e) {
+    this.toggleEdit(e);
+    // const changes = {
+    //   this.state.title,
+    //   this.state.description,
+    //   this.state.imgUrl;
+    // }
+    // podcasts.patch(changes).then(result => {
+    //   console.log('check', result.data);
+    // });
+  };
+
+  // Formats date to show long version
+
 
   Display.prototype.formatDate = function formatDate() {
     var date = new Date(_data_json__WEBPACK_IMPORTED_MODULE_1__.episode.published_at);
@@ -12288,11 +12391,27 @@ var Display = function (_React$Component) {
     return month + ' ' + date.getDate() + ', ' + date.getFullYear();
   };
 
+  // Toggles the podcast info between display and edit views.
+
+
   Display.prototype.render = function render() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
       'div',
       { className: 'episode-content' },
-      this.state.isEditing ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditDisplay__WEBPACK_IMPORTED_MODULE_3__["default"], { formatDate: this.formatDate, toggleEdit: this.toggleEdit }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowDisplay__WEBPACK_IMPORTED_MODULE_2__["default"], { formatDate: this.formatDate, toggleEdit: this.toggleEdit })
+      this.state.isEditing ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_EditDisplay__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        formatDate: this.formatDate,
+        toggleEdit: this.toggleEdit,
+        setTitle: this.setTitle,
+        setDescription: this.setDescription,
+        setImgUrl: this.setImgUrl,
+        setEdits: this.setEdits
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ShowDisplay__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        formatDate: this.formatDate,
+        toggleEdit: this.toggleEdit,
+        title: this.state.title,
+        description: this.state.description,
+        imgUrl: this.state.imgUrl
+      })
     );
   };
 
@@ -12328,39 +12447,41 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var EditDisplay = function (_React$Component) {
   _inherits(EditDisplay, _React$Component);
 
-  function EditDisplay(props) {
+  function EditDisplay() {
+    var _temp, _this, _ret;
+
     _classCallCheck(this, EditDisplay);
 
-    var _this = _possibleConstructorReturn(this, _React$Component.call(this, props));
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
 
-    _this.handleTitleChange = function (event) {
-      _this.setState({ title: event.target.value });
-    };
-
-    _this.handleDescriptionChange = function (event) {
-      _this.setState({ description: event.target.value });
-    };
-
-    _this.state = {
-      title: '',
-      description: ''
-    };
-    return _this;
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, _React$Component.call.apply(_React$Component, [this].concat(args))), _this), _this.handleTitleChange = function (event) {
+      _this.props.setTitle(event.target.value);
+    }, _this.handleDescriptionChange = function (event) {
+      _this.props.setDescription(event.target.value);
+    }, _this.handleImgChange = function (event) {
+      _this.props.setImgUrl(event.target.value);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
   }
+  // Sends updated title to parent.
+
+
+  // Sends updated description to parent.
+
+
+  // Sends updated image url to parent.
+
 
   EditDisplay.prototype.render = function render() {
+    var _this2 = this;
+
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
       'div',
       null,
       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
         'div',
-        { className: 'episode-data' },
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
-          'span',
-          null,
-          this.props.formatDate()
-        ),
-        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        { className: 'edit-box' },
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
           'span',
           null,
@@ -12370,7 +12491,7 @@ var EditDisplay = function (_React$Component) {
           onChange: this.handleTitleChange,
           type: 'text',
           className: 'input',
-          value: this.state.title,
+          value: this.props.title,
           placeholder: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.title
         }),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
@@ -12383,13 +12504,28 @@ var EditDisplay = function (_React$Component) {
           onChange: this.handleDescriptionChange,
           type: 'text',
           className: 'input',
-          value: this.state.title,
+          value: this.props.description,
           placeholder: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.description
         }),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+          'span',
+          null,
+          'Image URL:'
+        ),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('input', {
+          onChange: this.handleImgChange,
+          type: 'text',
+          className: 'input',
+          value: this.props.imgUrl,
+          placeholder: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.image_url
+        }),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
           'button',
-          { className: 'btn', onClick: this.props.toggleEdit },
+          { className: 'btn', onClick: function onClick(e) {
+              return _this2.props.setEdits(e);
+            } },
           'Save'
         )
       )
@@ -12414,16 +12550,13 @@ var EditDisplay = function (_React$Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../data.json */ "./data.json");
-var _data_json__WEBPACK_IMPORTED_MODULE_2___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data.json */ "./data.json", 1);
+/* harmony import */ var _data_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data.json */ "./data.json");
+var _data_json__WEBPACK_IMPORTED_MODULE_1___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../data.json */ "./data.json", 1);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
 
 
 
@@ -12443,11 +12576,15 @@ var ShowDisplay = function (_React$Component) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
       'div',
       null,
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/edit.svg', alt: 'edit', className: 'edit', onClick: function onClick(e) {
-          return _this2.props.toggleEdit(e);
-        } }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
+        'a',
+        { onClick: function onClick(e) {
+            return _this2.props.toggleEdit(e);
+          } },
+        react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/edit.svg', alt: 'edit', className: 'edit' })
+      ),
       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: '../public/stylesheet/more.svg', alt: 'more', className: 'more' }),
-      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.image_url, className: 'img', alt: _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.title }),
+      react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('img', { src: this.props.imgUrl, className: 'img', alt: _data_json__WEBPACK_IMPORTED_MODULE_1__.episode.title }),
       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
         'div',
         { className: 'episode-data' },
@@ -12460,13 +12597,13 @@ var ShowDisplay = function (_React$Component) {
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
           'span',
           null,
-          _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.title
+          this.props.title
         ),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement('br', null),
         react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(
           'span',
           null,
-          _data_json__WEBPACK_IMPORTED_MODULE_2__.episode.description
+          this.props.description
         )
       )
     );
@@ -12474,10 +12611,6 @@ var ShowDisplay = function (_React$Component) {
 
   return ShowDisplay;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
-
-ShowDisplay.propTypes = {
-  toggleEdit: prop_types__WEBPACK_IMPORTED_MODULE_1__["func"].isRequired
-};
 
 /* harmony default export */ __webpack_exports__["default"] = (ShowDisplay);
 
