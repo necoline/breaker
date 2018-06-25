@@ -12244,20 +12244,6 @@ var AuidoBar = function (_React$Component) {
       return _this.state.audioFile.currentTime -= 30.0;
     };
 
-    _this.showProgress = function () {
-      var elem = document.getElementById('myBar');
-      var width = 1;
-      var id = setInterval(frame, 10);
-      function frame() {
-        if (width >= 100) {
-          clearInterval(id);
-        } else {
-          width++;
-          elem.style.width = width + '%';
-        }
-      }
-    };
-
     _this.state = {
       isPlaying: false,
       audioFile: new Audio(_data_json__WEBPACK_IMPORTED_MODULE_1__.episode.enclosure_url)

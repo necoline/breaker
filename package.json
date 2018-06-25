@@ -16,7 +16,6 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-plugin-transform-class-properties": "^6.24.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router": "^4.3.1",
@@ -28,6 +27,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^4.19.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react": "^1.1.7",
