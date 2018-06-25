@@ -35,20 +35,6 @@ class AuidoBar extends React.Component {
     return (this.state.audioFile.currentTime -= 30.0);
   };
 
-  showProgress = () => {
-    var elem = document.getElementById('myBar');
-    var width = 1;
-    var id = setInterval(frame, 10);
-    function frame() {
-      if (width >= 100) {
-        clearInterval(id);
-      } else {
-        width++;
-        elem.style.width = width + '%';
-      }
-    }
-  };
-
   render() {
     return (
       <div className="audio-menu">
